@@ -10,22 +10,22 @@
 
         .left-content {
             width: 25%;
-            border: 1px solid black;
             display: flex;
             align-items: center;
             justify-content: center;
             .header-logo {
                 cursor: pointer;
-                height: 50%;
-                width: 50%;
-                background: url("../../assets/images/user.svg") center center
-                    no-repeat;
+                height: 100%;
+                width: 25%;
+                background: url("../../assets/images/logoHeader.jpg");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
             }
         }
 
         .center-content {
             width: 50%;
-            border: 1px solid green;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -40,10 +40,131 @@
 
         .right-content {
             width: 25%;
-            border: 1px solid red;
             display: flex;
             align-items: center;
             justify-content: center;
+
+            .support {
+                margin-right: 10px;
+            }
+
+            .language-vi {
+                cursor: pointer;
+                opacity: 0.2;
+                &.active {
+                    opacity: 1;
+                    color: orange;
+                }
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            .language-en {
+                cursor: pointer;
+                margin: 0 10px;
+                opacity: 0.2;
+
+                &.active {
+                    opacity: 1;
+                    color: blue;
+                }
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .home-header-banner {
+        display: flex;
+        flex-direction: column;
+        background: url("../../assets/images/header-bg.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 455px;
+
+        .content-up {
+            background-image: linear-gradient(
+                rgba(126, 126, 126, 0.25),
+                rgba(255, 255, 255, 0.1)
+            );
+            padding: 15px;
+            height: 65%;
+            .title1 {
+                text-align: center;
+                font-size: 30px;
+                text-shadow: 1px 1px 1px #333;
+                margin: 30px 0 5px 0;
+                color: white;
+            }
+
+            .title2 {
+                text-align: center;
+                font-size: 30px;
+                text-shadow: 1px 1px 1px #333;
+                margin-bottom: 15px;
+                color: white;
+            }
+
+            .search {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: orange;
+                width: fit-content;
+                margin: 0 auto;
+                width: 400px;
+                padding: 10px;
+                border-radius: 25px;
+
+                input {
+                    height: 30px;
+                    width: 360px;
+                    background-color: transparent;
+                    outline: none;
+                    border: none;
+                }
+            }
+        }
+
+        .content-down {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 35%;
+            .options {
+                display: flex;
+                justify-content: center;
+                gap: 50px;
+                width: 100%;
+                .option-child {
+                    display: flex;
+                    text-align: center;
+                    align-items: center;
+                    flex-direction: column;
+
+                    .icon-child {
+                        cursor: pointer;
+                        background: white;
+                        width: 45px;
+                        height: 42px;
+                        padding: 10px;
+                        border-radius: 50%;
+                    }
+
+                    .text-child {
+                        cursor: pointer;
+                        font-size: 18px;
+
+                        &:hover {
+                            color: #49bce2;
+                        }
+                    }
+                }
+            }
         }
     }
 }

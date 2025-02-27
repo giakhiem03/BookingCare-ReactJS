@@ -1,4 +1,26 @@
 {
+    "homeheader": {
+        "specialty": "Medical specialty",
+        "searchDoctor": "Find a doctor by specialty",
+        "health-facility": "Facility",
+        "select-room": "Select room",
+        "doctor": "Doctor",
+        "select-doctor": "Choose a good doctor",
+        "fee": "Checkup package",
+        "check-health": "General health check",
+        "support": "Support"
+    },
+    "banner": {
+        "title1": "MEDICAL PLATFORM",
+        "title2": "COMPREHENSIVE HEALTH CARE",
+        "child1": "Specialist Examination",
+        "child2": "Remote Examination",
+        "child3": "General Examination",
+        "child4": "Medical Test",
+        "child5": "Surgery Package",
+        "child6": "Healthy Diabetes Living",
+        "placeholder": "Find a medical specialist"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",

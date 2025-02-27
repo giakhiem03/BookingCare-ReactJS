@@ -6,7 +6,7 @@ export const path = {
     HOMEPAGE: "/homepage",
 };
 
-export const languages = {
+export const LANGUAGES = {
     VI: "vi",
     EN: "en",
 };
