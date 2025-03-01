@@ -7,7 +7,7 @@ class HomeFooter extends Component {
             <div className=" home-footer">
                 <p>
                     &copy; 2025 Fullstack Developer{" "}
-                    <a href="#">More information</a>
+                    <a href="/#">More information</a>
                 </p>
             </div>
         );

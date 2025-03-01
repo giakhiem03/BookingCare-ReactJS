@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
 
@@ -9,7 +8,7 @@ class UserManage extends Component {
         this.state = {};
     }
 
-    componentDidMount() {}
+    // componentDidMount() {}
 
     render() {
         return (
