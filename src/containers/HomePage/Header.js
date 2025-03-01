@@ -22,7 +22,8 @@ class Header extends Component {
         this.props.onChangeLanguage(language);
     };
     render() {
-        const { intl } = this.props;
+        console.log(this.props.userInfo);
+        let { intl } = this.props;
         return (
             <>
                 <div className="home-header-container">

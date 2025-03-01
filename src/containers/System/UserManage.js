@@ -15,7 +15,7 @@ class UserManage extends Component {
             <div className="users-container">
                 <div className="title text-center">Manage users</div>
                 <div className="table">
-                    <table class="table">
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
