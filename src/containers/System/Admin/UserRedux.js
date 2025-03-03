@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 // import userService from "../../../services/userService";
-import { LANGUAGES, CRUD_ACTIONS } from "../../../utils";
+import { CommonUtils, LANGUAGES, CRUD_ACTIONS } from "../../../utils";
 import * as actions from "../../../store/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
@@ -95,17 +95,19 @@ class UserRedux extends Component {
                 role: roles && roles.length > 0 ? roles[0].key : "",
                 avatar: "",
                 action: CRUD_ACTIONS.CREATE,
+                previewImage: "",
             });
         }
     }
 
-    handleOnchangeImage = (e) => {
+    handleOnchangeImage = async (e) => {
         let file = e.target.files[0];
         if (file) {
+            let base64 = await CommonUtils.getBase64(file);
             let previewImage = URL.createObjectURL(file);
             this.setState({
                 previewImage,
-                avatar: file,
+                avatar: base64,
             });
         }
     };
@@ -166,6 +168,7 @@ class UserRedux extends Component {
                 gender: this.state.gender,
                 roleId: this.state.role,
                 positionId: this.state.position,
+                avatar: this.state.avatar,
             });
         }
 
@@ -189,6 +192,10 @@ class UserRedux extends Component {
     };
 
     handleEditUserFromParent = (user) => {
+        let imageBase64 = "";
+        if (user.image) {
+            imageBase64 = new Buffer(user.image, "base64");
+        }
         this.setState({
             email: user.email,
             password: "HARDCODE",
@@ -202,6 +209,7 @@ class UserRedux extends Component {
             avatar: "",
             action: CRUD_ACTIONS.EDIT,
             userEditId: user.id,
+            previewImage: imageBase64,
         });
     };
 
