@@ -198,7 +198,7 @@ export const fetchTopDoctors = () => {
         try {
             let res = await userService.getTopDoctorHomeService("");
             if (res && res.errCode === 0) {
-                dispatch(fetchTopDoctorsSuccess(res.data));
+                dispatch(fetchTopDoctorsSuccess());
             } else {
                 toast.error(res.message);
                 dispatch(fetchTopDoctorsFailed());
@@ -219,5 +219,62 @@ export const fetchTopDoctorsSuccess = (data) => {
 export const fetchTopDoctorsFailed = () => {
     return {
         type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+    };
+};
+
+export const fetchAllDoctors = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await userService.getAllDoctors();
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllDoctorsSuccess(res.data));
+            } else {
+                toast.error(res.message);
+                dispatch(fetchAllDoctorsFailed());
+            }
+        } catch (error) {
+            dispatch(fetchAllDoctorsFailed());
+        }
+    };
+};
+
+export const fetchAllDoctorsSuccess = (data) => {
+    return {
+        type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+        data,
+    };
+};
+export const fetchAllDoctorsFailed = () => {
+    return {
+        type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+    };
+};
+
+export const saveDetailDoctor = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await userService.saveDetailDoctor(data);
+            if (res && res.errCode === 0) {
+                toast.success("Save Info Detail Doctor Succeed");
+                dispatch(saveDetailDoctorSuccess());
+            } else {
+                toast.error(res.message);
+                dispatch(saveDetailDoctorFailed());
+            }
+        } catch (error) {
+            dispatch(saveDetailDoctorFailed());
+        }
+    };
+};
+
+export const saveDetailDoctorSuccess = () => {
+    return {
+        type: actionTypes.SAVE_DETAIL_DOCTORS_SUCCESS,
+    };
+};
+
+export const saveDetailDoctorFailed = () => {
+    return {
+        type: actionTypes.SAVE_DETAIL_DOCTORS_FAILED,
     };
 };

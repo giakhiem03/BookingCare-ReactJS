@@ -28,6 +28,14 @@ class UserService {
     getTopDoctorHomeService = (limit) => {
         return axios.get(`/api/top-doctor-home?limit=${limit}`);
     };
+
+    getAllDoctors = () => {
+        return axios.get("/api/top-all-doctors");
+    };
+
+    saveDetailDoctor = (data) => {
+        return axios.post("/api/save-info-doctors", data);
+    };
 }
 
 export default new UserService();
