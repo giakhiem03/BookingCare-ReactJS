@@ -2,6 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions";
 import { CRUD_ACTIONS } from "../../../utils";
+import MarkdownIt from "markdown-it";
+import MdEditor from "react-markdown-editor-lite";
+// import style manually
+import "react-markdown-editor-lite/lib/index.css";
+
+// Register plugins if required
+// MdEditor.use(YOUR_PLUGINS_HERE);
+
+// Initialize a markdown parser
+const mdParser = new MarkdownIt(/* Markdown-it options */);
+
+// Finish!
+function handleEditorChange({ html, text }) {
+    console.log("handleEditorChange", html, text);
+}
 
 class TableManageUser extends Component {
     constructor(props) {
@@ -37,57 +52,68 @@ class TableManageUser extends Component {
     render() {
         let { users } = this.state;
         return (
-            <div className="users-container">
-                <div className="title text-center">Manage users</div>
-                <div className="table">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Email</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {users &&
-                                users.length > 0 &&
-                                users.map((item, index) => (
-                                    <tr key={index}>
-                                        <th>{item.email}</th>
-                                        <td>{item.address}</td>
-                                        <td>{item.firstName}</td>
-                                        <td>{item.lastName}</td>
-                                        <td>
-                                            <button
-                                                onClick={() =>
-                                                    this.handleEditUser(item)
-                                                }
-                                                className={
-                                                    this.props.action ===
-                                                    CRUD_ACTIONS.EDIT
-                                                        ? "btn btn-warning me-2"
-                                                        : "btn btn-primary me-2"
-                                                }
-                                            >
-                                                Sửa
-                                            </button>
-                                            <button
-                                                onClick={() =>
-                                                    this.handleDeleteUser(item)
-                                                }
-                                                className="btn btn-danger"
-                                            >
-                                                Xóa
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                        </tbody>
-                    </table>
+            <>
+                <MdEditor
+                    style={{ height: "500px" }}
+                    renderHTML={(text) => mdParser.render(text)}
+                    onChange={handleEditorChange}
+                />
+                <div className="users-container">
+                    <div className="title text-center">Manage users</div>
+                    <div className="table">
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {users &&
+                                    users.length > 0 &&
+                                    users.map((item, index) => (
+                                        <tr key={index}>
+                                            <th>{item.email}</th>
+                                            <td>{item.address}</td>
+                                            <td>{item.firstName}</td>
+                                            <td>{item.lastName}</td>
+                                            <td>
+                                                <button
+                                                    onClick={() =>
+                                                        this.handleEditUser(
+                                                            item
+                                                        )
+                                                    }
+                                                    className={
+                                                        this.props.action ===
+                                                        CRUD_ACTIONS.EDIT
+                                                            ? "btn btn-warning me-2"
+                                                            : "btn btn-primary me-2"
+                                                    }
+                                                >
+                                                    Sửa
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        this.handleDeleteUser(
+                                                            item
+                                                        )
+                                                    }
+                                                    className="btn btn-danger"
+                                                >
+                                                    Xóa
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            </>
         );
     }
 }

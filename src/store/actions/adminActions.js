@@ -80,8 +80,8 @@ export const fetchRoleFailed = () => ({
 export const createNewUser = (data) => {
     return async (dispatch, getState) => {
         try {
+            console.log("RES: >>>>>>", data);
             let res = await userService.createNewUserService(data);
-            console.log("RES: >>>>>>", res);
             if (res && res.errCode === 0) {
                 toast.success("Create a new user succeed");
                 dispatch(saveUserSuccess());
@@ -108,6 +108,7 @@ export const fetchAllUserStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await userService.getAllUsers("ALL");
+            // let doctors = await userService.getTopDoctorHomeService(10);
             if (res && res.errCode === 0) {
                 let users = res.users.reverse();
                 dispatch(fetchAllUserSuccess(users));
@@ -189,5 +190,34 @@ export const editUserSuccess = () => {
 export const editUserFailed = () => {
     return {
         type: actionTypes.EDIT_USER_FAILED,
+    };
+};
+
+export const fetchTopDoctors = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await userService.getTopDoctorHomeService("");
+            if (res && res.errCode === 0) {
+                dispatch(fetchTopDoctorsSuccess(res.data));
+            } else {
+                toast.error(res.message);
+                dispatch(fetchTopDoctorsFailed());
+            }
+        } catch (error) {
+            dispatch(fetchTopDoctorsFailed());
+        }
+    };
+};
+
+export const fetchTopDoctorsSuccess = (data) => {
+    return {
+        type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
+        data,
+    };
+};
+
+export const fetchTopDoctorsFailed = () => {
+    return {
+        type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
     };
 };

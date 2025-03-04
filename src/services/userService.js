@@ -24,6 +24,10 @@ class UserService {
     editUserService = (inputData) => {
         return axios.put("/api/edit-user", inputData);
     };
+
+    getTopDoctorHomeService = (limit) => {
+        return axios.get(`/api/top-doctor-home?limit=${limit}`);
+    };
 }
 
 export default new UserService();
